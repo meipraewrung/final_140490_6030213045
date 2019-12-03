@@ -59,7 +59,9 @@ function addProduct(req, res) {
     // #9 Add a new product 
     var product = new Product(payload);
     product.save(function(err){
-        if(err) res.status(500).json(err);
+        if(err){
+            res.status(500).json({ status: "error", message: err});
+        }  
         res.json({status: "Added a product"});
     });
     // ===============================
