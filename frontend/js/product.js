@@ -23,7 +23,7 @@ $(function () {
                         <td>${product.price}</td>
                         <td>${product.photo}</td>
                         <td>
-                        <a class="btn btn-primary" href="userdetail.html?id=${product.serialno}">
+                        <a class="btn btn-primary" href="productdetail.html?id=${product.serialno}">
                              View Detail
                         </a>
                         </td>
