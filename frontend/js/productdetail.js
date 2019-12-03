@@ -49,7 +49,25 @@ $(function () {
     $("#confirmdelete").click(function () {
         // #15 Delete a selected product and go back to product list
         // usewinidow.location.href
-
+        var deleteproduct = {
+            serialno: $("#serialno").val(),
+            name: $("#name").val(),
+            category: $("#category").val(),
+            price: $("#price").val(),
+            photo: $("#photo").val()
+        }
+        $.ajax({
+            url: url,
+            type: 'DELETE',
+            data: deleteproduct,
+            success: function (result) {
+                //Show updated status
+                $("#modalbody").text("Updated product " + pid);
+                $('#alertModal').modal('toggle');
+                // Refresh data
+                getData();
+            }
+        });
         // ===============================
     });
 });
