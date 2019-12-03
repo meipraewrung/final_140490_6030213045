@@ -7,7 +7,6 @@ const url = "";
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 
 function getAllProducts(req, res) {
-
     Product.find({}, function (err, data) {   
         if(err){
             res.status(500).json({ status: "error", message: err});
@@ -22,7 +21,7 @@ function getProductById(req, res) {
     Product.find({"_id":pid}, function (err, product) {   
         if(err){
             res.status(500).json({ status: "error", message: err});
-        }     
+        }    
         res.json(product);
     });
 
@@ -34,7 +33,9 @@ function updateProductById(req, res) {
     var pid = req.params.pid;    
     // #7 Update a product by ID (findByIdAndUpdate)
     Product.findByIdAndUpdate(payload,pid,function(err){
-        if(err) res.status(500).json({ status: "error", message: err});
+        if(err){
+            res.status(500).json({ status: "error", message: err});
+        }  
         res.json({status:"Update a product"})
     })
 
