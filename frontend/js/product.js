@@ -51,8 +51,13 @@ $(function () {
         }
 
         // #13 Add new products by calling api
-        // use $.post
-
+        // use $.post$("input").keyup(function(){
+        $("input").keyup(function(){
+            var txt = $("input").val();
+            $.post(url, {newproduct:txt},function(result){
+            $("span").html(result);
+            })
+        });
         // ===============================
 
     });
