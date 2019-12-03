@@ -33,7 +33,35 @@ router.get('/products', products.getAllProducts);
 router.get('/products/:pid', products.getProductById);
 
 // #4 Complete the routing for POST, PUT, DELETE
+app.post('/api/products', function (req, res) {
+    //insert data to mongooes
+    var newproduct = req.body;
+    var product = new products(newproduct);
+    product.save(function(err){
+        if(err) res.status(500).json(err);
+        res.json({status: "Added a product"});
+    });
 
+});
+
+app.put('/api/products/:id', function (req, res) {
+    var id = req.params.id;
+    var updateproduct = req.body;
+    Product.findByIdAndUpdate(id,updateproduct,function(err){
+        if(err) res.status(500).json(err);
+        res.json({status:"Update a product"})
+    })
+
+});
+
+app.delete('/api/products/:id', function (req, res) {
+    var id = req.params.id;
+    Product.findByIdAndRemove(id,function(err){
+        if(err) res.status(500).json(err);
+        res.json({status:"Delete a product"})
+    })
+
+});
 // ===============================
 
 
